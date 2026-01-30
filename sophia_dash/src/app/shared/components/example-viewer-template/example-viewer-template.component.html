@@ -1,0 +1,5 @@
+<div class="m-333">
+  <div *ngFor="let example of examples" class="mb-24">
+    <sophia-example-viewer [exampleId]="example" [path]="componentDirPath" [data]="exampleComponents[example]"></sophia-example-viewer>
+  </div>
+</div>
