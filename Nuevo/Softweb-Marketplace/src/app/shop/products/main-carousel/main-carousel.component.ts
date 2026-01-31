@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SwiperConfigInterface, SwiperPaginationInterface } from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'app-main-carousel',
@@ -9,27 +8,22 @@ import { SwiperConfigInterface, SwiperPaginationInterface } from 'ngx-swiper-wra
 export class MainCarouselComponent implements OnInit {
 
   @Input('slides') slides: Array<any> = [];
-  public config: SwiperConfigInterface = {};
-
-  private pagination: SwiperPaginationInterface = {
-    el: '.swiper-pagination',
-    clickable: true
-  };
+  public config: any = {};
 
   constructor() { }
 
   ngOnInit() {
-  
+
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.config = {
       slidesPerView: 1,
       spaceBetween: 0,
       initialSlide: 5,
       keyboard: true,
       navigation: true,
-      pagination: this.pagination,
+      pagination: { el: '.swiper-pagination', clickable: true },
       grabCursor: true,
       loop: false,
       preloadImages: false,
@@ -42,8 +36,4 @@ export class MainCarouselComponent implements OnInit {
       effect: "slide"
     }
   }
-
-
-
-
 }

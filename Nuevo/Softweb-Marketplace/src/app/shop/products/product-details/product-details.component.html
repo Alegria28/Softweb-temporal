@@ -24,7 +24,7 @@
 
 
                <div class="small-carousel">
-                  <div class="swiper-container" [swiper]="config">
+                  <div class="swiper-container">
                      <div class="swiper-wrapper">
                         <div *ngFor="let image of product?.pictures; let i=index" class="swiper-slide">
                            <mat-card (click)="selectImage(i)" class="p-1">

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../../modals/product.model';
 import { CartService } from '../../../components/shared/services/cart.service';
 import { ProductService } from '../../../components/shared/services/product.service';
@@ -6,8 +6,6 @@ import { WishlistService } from '../../../components/shared/services/wishlist.se
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
-import { SwiperDirective } from 'ngx-swiper-wrapper';
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'app-product-carousel-three',
@@ -19,16 +17,16 @@ export class ProductCarouselThreeComponent implements OnInit {
   @Output() onOpenProductDialog: EventEmitter<any> = new EventEmitter();
 
   @Input('product') product: Array<Product> = [];
-  public config: SwiperConfigInterface = {};
+  public config: any = {};
 
   constructor(private cartService: CartService, private productsService: ProductService, private wishlistService: WishlistService, private dialog: MatDialog, private router: Router) { }
-  // @ViewChild(SwiperDirective) directiveRef: SwiperDirective;
 
   ngOnInit() {
     setTimeout(() => {
       this.contentLoaded = true;
     }, 3000);
   }
+
   ngAfterViewInit() {
     this.config = {
       observer: true,
@@ -42,40 +40,26 @@ export class ProductCarouselThreeComponent implements OnInit {
       preloadImages: false,
       lazy: true,
       breakpoints: {
-        480: {
-          slidesPerView: 1
-        },
-        740: {
-          slidesPerView: 2,
-        },
-        960: {
-          slidesPerView: 3,
-        },
-        1280: {
-          slidesPerView: 4,
-        },
-
-
+        480: { slidesPerView: 1 },
+        740: { slidesPerView: 2 },
+        960: { slidesPerView: 3 },
+        1280: { slidesPerView: 4 }
       }
     }
   }
 
-  // Add to cart
   public addToCart(product: Product, quantity: number = 1) {
     this.cartService.addToCart(product, quantity);
     console.log(product, quantity);
   }
 
-  // Add to wishlist
   public addToWishlist(product: Product) {
     this.wishlistService.addToWishlist(product);
   }
 
-  // Add to compare
   public addToCompare(product: Product) {
     this.productsService.addToCompare(product);
   }
-
 
   public openProductDialog(product: Product) {
     let dialogRef = this.dialog.open(ProductDialogComponent, {
@@ -88,5 +72,4 @@ export class ProductCarouselThreeComponent implements OnInit {
       }
     });
   }
-
 }

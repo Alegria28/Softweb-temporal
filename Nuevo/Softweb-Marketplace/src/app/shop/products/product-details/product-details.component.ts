@@ -4,7 +4,6 @@ import { ProductService } from '../../../components/shared/services/product.serv
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { CartService } from '../../../components/shared/services/cart.service';
-import { SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { ProductZoomComponent } from './product-zoom/product-zoom.component';
 
 @Component({
@@ -14,11 +13,10 @@ import { ProductZoomComponent } from './product-zoom/product-zoom.component';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  public config: SwiperConfigInterface = {};
+  public config: any = {};
   @Output() onOpenProductDialog: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('zoomViewer', { static: true }) zoomViewer: any;
-  @ViewChild(SwiperDirective, { static: true }) directiveRef: SwiperDirective;
 
   public product: Product = {};
   public products: Product[] = [];
@@ -40,11 +38,8 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.productsService.getProducts().subscribe(product => this.products = product);
-
-
     this.getRelatedProducts();
   }
-
 
   ngAfterViewInit() {
     this.config = {
@@ -59,24 +54,13 @@ export class ProductDetailsComponent implements OnInit {
       preloadImages: false,
       lazy: true,
       breakpoints: {
-        480: {
-          slidesPerView: 1
-        },
-        740: {
-          slidesPerView: 2,
-        },
-        960: {
-          slidesPerView: 3,
-        },
-        1280: {
-          slidesPerView: 3,
-        },
-
-
+        480: { slidesPerView: 1 },
+        740: { slidesPerView: 2 },
+        960: { slidesPerView: 3 },
+        1280: { slidesPerView: 3 }
       }
     }
   }
-
 
   public openProductDialog(product: any, bigProductImageIndex: any) {
     let dialogRef = this.dialog.open(ProductZoomComponent, {
@@ -90,15 +74,11 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
-
   public selectImage(index: any) {
     console.log(this.product)
     console.log(index)
     this.bigProductImageIndex = index;
   }
-
-
-
 
   public increment() {
     this.counter += 1;
@@ -118,21 +98,17 @@ export class ProductDetailsComponent implements OnInit {
         });
   }
 
-  // Add to cart
   public addToCart(product: Product, quantity: any) {
     if (quantity == 0) return false;
     this.cartService.addToCart(product, parseInt(quantity));
     return true;
   }
 
-  // Add to cart
   public buyNow(product: Product, quantity: any) {
     if (quantity > 0)
       this.cartService.addToCart(product, parseInt(quantity));
     this.router.navigate(['/pages/checkout']);
   }
-
-
 
   public onMouseMove(e: any) {
     if (window.innerWidth >= 1280) {
