@@ -18,7 +18,7 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { HomeTwoComponent } from './home-two/home-two.component';
-import { HomeThreeComponent } from './home-three/home-three.component';
+import { HomeThreeComponent } from '../../../../../Nuevo/Softweb-Marketplace/src/app/shop/home-three/home-three.component';
 // Import the library
 
 import { from } from 'rxjs';
