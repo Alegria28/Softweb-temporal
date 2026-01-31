@@ -16,7 +16,7 @@
                      <button mat-icon-button fxHide="false" fxHide.gt-md>
                         <mat-icon>fullscreen</mat-icon>
                      </button>
-                     <img [src]="product.pictures[bigProductImageIndex].big" />
+                     <img [src]="product?.pictures?.[bigProductImageIndex]?.big" />
                   </div>
                   <a (click)="openProductDialog(product, bigProductImageIndex)"
                      style="cursor: pointer;"><mat-icon>zoom_in</mat-icon></a>
@@ -56,8 +56,8 @@
                   <div class="py-1 mt-15">
                      <p>
                         <span class="text-muted fw-500">Avalibility: </span>
-                        <span class="avalibility" *ngIf="counter <= product.stock"><span>In Stock</span></span>
-                        <span class="avalibility" *ngIf="counter > product.stock"><span class="red">Out of
+                        <span class="avalibility" *ngIf="counter <= (product?.stock ?? 0)"><span>In Stock</span></span>
+                        <span class="avalibility" *ngIf="counter > (product?.stock ?? 0)"><span class="red">Out of
                               Stock</span></span>
                      </p>
                   </div>

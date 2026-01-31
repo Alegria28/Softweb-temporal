@@ -8,7 +8,7 @@
       <div fxFlex="100" fxFlex.gt-sm="50">
         <div class="swiper-container h-100">
           <div class="swiper-wrapper">
-            <img [src]="product.pictures[0].big" alt="" class="img-fluid">
+            <img [src]="product?.pictures?.[0]?.big" alt="" class="img-fluid">
           </div>
 
         </div>
@@ -28,11 +28,9 @@
           <div class="py-1 mt-15">
             <p>
               <span class="text-muted fw-500">Avalibility: </span>
-              @if (counter <= product.stock) { <span class="avalibility"><span>In Stock</span></span>
-                }
-                @if (counter > product.stock) {
-                <span class="avalibility"><span class="red">Out of Stock</span></span>
-                }
+              @if (counter <= (product?.stock ?? 0)) { <span class="avalibility"><span>In Stock</span></span> }
+                @if (counter > (product?.stock ?? 0)) { <span class="avalibility"><span class="red">Out of
+                    Stock</span></span> }
             </p>
           </div>
           <div class="" fxLayout="row" fxLayoutAlign="space-between center">

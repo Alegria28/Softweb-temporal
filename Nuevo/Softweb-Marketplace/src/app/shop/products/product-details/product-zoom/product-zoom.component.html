@@ -4,17 +4,17 @@
     <button mat-mini-fab color="warn" (click)="close()"><mat-icon>close</mat-icon></button>
   </div>
   <div mat-dialog-content>
-    <div fxLayout="row wrap" >
-        <div>
-            <div class="swiper-container h-100">
-                <div class="swiper-wrapper">
-                  <img [src]="product.pictures[selectedProductImageIndex].big" alt="" class="img-fluid">
-                </div>
+    <div fxLayout="row wrap">
+      <div>
+        <div class="swiper-container h-100">
+          <div class="swiper-wrapper">
+            <img [src]="product?.pictures?.[selectedProductImageIndex]?.big" alt="" class="img-fluid">
+          </div>
 
-            </div>
         </div>
+      </div>
 
     </div>
   </div>
 
-  </div>
+</div>
