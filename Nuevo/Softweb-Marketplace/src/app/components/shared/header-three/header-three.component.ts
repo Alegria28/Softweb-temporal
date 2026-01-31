@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../../modals/product.model';
 import { CartItem } from '../../../modals/cart-item';
 import { CartService } from '../services/cart.service';
+import { ProductService } from '../services/product.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header-three',
@@ -28,8 +30,11 @@ export class HeaderThreeComponent implements OnInit {
   indexProduct: number = 0;
   shoppingCartItems: CartItem[] = [];
 
-
-  constructor(private cartService: CartService) {
+  constructor(
+    private cartService: CartService,
+    public productService: ProductService,
+    public translate: TranslateService
+  ) {
     this.cartService.getItems().subscribe(shoppingCartItems => this.shoppingCartItems = shoppingCartItems);
   }
 
@@ -41,6 +46,7 @@ export class HeaderThreeComponent implements OnInit {
   public changeCurrency(currency: string) {
     this.productService.changeCurrency(currency);
   }
+
   public changeLang(flag: string) {
     this.translate.use(flag);
   }

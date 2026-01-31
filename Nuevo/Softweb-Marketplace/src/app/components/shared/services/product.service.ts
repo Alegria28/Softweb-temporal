@@ -57,6 +57,9 @@ export class ProductService {
     // return this.httpClient.get<Product>(this._url + 'product-' + id + '.json');
   }
 
+  public changeCurrency(currency: string) {
+    this.currency = currency;
+  }
 
   /*
 ---------------------------------------------

@@ -12,9 +12,9 @@ export class PopularProductsComponent implements OnInit {
   public products: Product[] = [];
   public product: Product = {};
 
-  constructor(private productService: ProductService) { }
+  constructor(public productsService: ProductService) { }
 
   ngOnInit() {
-    this.productService.getProducts().subscribe(product => this.products = product);
+    this.productsService.getProducts().subscribe(product => this.products = product);
   }
 }
