@@ -1,9 +1,15 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { MatSliderModule } from '@angular/material/slider';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-price',
   templateUrl: './price.component.html',
-  styleUrls: ['./price.component.sass']
+  styleUrls: ['./price.component.sass'],
+  imports: [
+    MatSliderModule,
+    FormsModule,
+  ]
 })
 export class PriceComponent implements OnInit {
 
@@ -14,16 +20,16 @@ export class PriceComponent implements OnInit {
   @Output() priceFilters = new EventEmitter();
 
   // define min, max and range
-  public min : number = 100;
-  public max : number = 1000;
-  public range = [100,1000];
+  public min: number = 100;
+  public max: number = 1000;
+  public range = [100, 1000];
 
   constructor() { }
 
-  ngOnInit() {  }
+  ngOnInit() { }
 
   // rangeChanged
-  priceChanged(event:any) {
+  priceChanged(event: any) {
     setInterval(() => {
       this.priceFilters.emit(event);
     }, 1000);

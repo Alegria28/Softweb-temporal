@@ -1,4 +1,8 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { CurrencyPipe, CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { CartService } from '../../../components/shared/services/cart.service';
 import { ProductService } from '../../../components/shared/services/product.service';
 import { WishlistService } from '../../../components/shared/services/wishlist.service';
@@ -6,20 +10,17 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Product } from '../../../modals/product.model';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
-import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.sass'],
-  imports: [
-    CurrencyPipe
-  ]
+  imports: [CurrencyPipe, RouterLink, MatCardModule, MatIconModule, CommonModule]
 })
 export class ProductComponent implements OnInit {
 
   @Output() onOpenProductDialog: EventEmitter<any> = new EventEmitter();
-  @Input() product: Product = {};
+  @Input() product: Product = new Product(0, '', 0);
 
   constructor(private cartService: CartService, public productsService: ProductService, private wishlistService: WishlistService, private dialog: MatDialog, private router: Router) { }
 

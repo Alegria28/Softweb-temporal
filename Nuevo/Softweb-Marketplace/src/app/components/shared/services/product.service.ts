@@ -50,7 +50,7 @@ export class ProductService {
   // Get Products By Id
   public getProduct(id: number): Observable<Product> {
     return this.products().pipe(map(items => {
-      return items.find((item: Product) => { return item.id === id; }) || {};
+      return items.find((item: Product) => { return item.id === id; }) as Product;
     }));
     // return this.products.find(product=> product.id === id);
 
@@ -83,11 +83,11 @@ export class ProductService {
   }
 
   // Get Products By Slug
-  public getProductBySlug(slug: string): Observable<Product> {
+  public getProductBySlug(slug: string): Observable<Product | undefined> {
     return this.products().pipe(map(items => {
       return items.find((item: Product) => {
         return !!item.name && item.name.replace(' ', '-') === slug;
-      }) || {};
+      });
     }));
   }
 

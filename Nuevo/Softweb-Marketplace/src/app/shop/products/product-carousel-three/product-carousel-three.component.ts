@@ -1,4 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 import { Product } from '../../../modals/product.model';
 import { CartService } from '../../../components/shared/services/cart.service';
 import { ProductService } from '../../../components/shared/services/product.service';
@@ -6,13 +11,25 @@ import { WishlistService } from '../../../components/shared/services/wishlist.se
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
-import { DecimalPipe } from '@angular/common';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import Swiper from 'swiper';
+import { Navigation, Pagination } from 'swiper/modules';
+
+Swiper.use([Navigation, Pagination]);
 
 @Component({
   selector: 'app-product-carousel-three',
   templateUrl: './product-carousel-three.component.html',
-  styleUrls: ['./product-carousel-three.component.sass'],
-  imports: [DecimalPipe]
+  styleUrls: ['./product-carousel-three.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    NgxSkeletonLoaderModule,
+    RouterModule,
+  ]
 })
 export class ProductCarouselThreeComponent implements OnInit {
   contentLoaded = false;

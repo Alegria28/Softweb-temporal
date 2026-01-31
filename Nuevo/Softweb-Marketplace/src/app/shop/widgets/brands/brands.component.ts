@@ -1,10 +1,16 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-brands',
   templateUrl: './brands.component.html',
-  styleUrls: ['./brands.component.sass']
+  styleUrls: ['./brands.component.sass'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatRadioModule,
+  ],
 })
 export class BrandsComponent implements OnInit {
 

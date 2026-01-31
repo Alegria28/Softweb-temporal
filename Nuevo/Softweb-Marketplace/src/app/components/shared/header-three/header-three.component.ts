@@ -1,54 +1,83 @@
-import { Component, OnInit } from '@angular/core';
-import { Product } from '../../../modals/product.model';
-import { CartItem } from '../../../modals/cart-item';
-import { CartService } from '../services/cart.service';
-import { ProductService } from '../services/product.service';
-import { TranslateService } from '@ngx-translate/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+}
+
+interface CartItem {
+  id: number;
+  name: string;
+  quantity: number;
+  price: number;
+}
+
+class ProductService {
+  getProducts() {
+    return { subscribe: (callback: any) => callback([]) };
+  }
+
+  changeCurrency(currency: string) {
+    console.log('Currency changed to:', currency);
+  }
+}
+
+class TranslateService {
+  instant(key: string) {
+    return key;
+  }
+
+  use(lang: string) {
+    console.log('Language changed to:', lang);
+  }
+}
+
+class CartService {
+  getItems() {
+    return { subscribe: (callback: any) => callback([]) };
+  }
+}
 
 @Component({
   selector: 'app-header-three',
   templateUrl: './header-three.component.html',
-  styleUrls: ['./header-three.component.sass']
+  styleUrls: [],
+  standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatToolbarModule,
+    MatIconModule
+  ],
+  providers: [CartService, ProductService, TranslateService]
 })
 export class HeaderThreeComponent implements OnInit {
-
-  public sidenavMenuItems: Array<any> = [];
-
-  public currencies = ['USD', 'EUR'];
-  public currency: any;
-  public flags = [
-    { name: 'English', image: 'assets/images/flags/gb.svg' },
-    { name: 'German', image: 'assets/images/flags/de.svg' },
-    { name: 'French', image: 'assets/images/flags/fr.svg' },
-    { name: 'Russian', image: 'assets/images/flags/ru.svg' },
-    { name: 'Turkish', image: 'assets/images/flags/tr.svg' }
-  ]
-  public flag: any;
-
   products: Product[] = [];
-
-  indexProduct: number = 0;
   shoppingCartItems: CartItem[] = [];
 
   constructor(
     private cartService: CartService,
     public productService: ProductService,
     public translate: TranslateService
-  ) {
-    this.cartService.getItems().subscribe(shoppingCartItems => this.shoppingCartItems = shoppingCartItems);
-  }
+  ) {}
 
   ngOnInit() {
-    this.currency = this.currencies[0];
-    this.flag = this.flags[0];
+    this.cartService.getItems().subscribe((shoppingCartItems: CartItem[]) => {
+      this.shoppingCartItems = shoppingCartItems;
+    });
   }
 
-  public changeCurrency(currency: string) {
+  changeCurrency(currency: string) {
     this.productService.changeCurrency(currency);
   }
 
-  public changeLang(flag: string) {
+  changeLanguage(flag: string) {
     this.translate.use(flag);
   }
-
 }

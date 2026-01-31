@@ -1,17 +1,31 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CurrencyPipe } from '@angular/common';
+import { SlicePipe } from '@angular/common';
 import { Product } from '../../../modals/product.model';
 import { ProductService } from '../../../components/shared/services/product.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { CartService } from '../../../components/shared/services/cart.service';
 import { ProductZoomComponent } from './product-zoom/product-zoom.component';
+import { ProductCarouselThreeComponent } from '../product-carousel-three/product-carousel-three.component';
+import { BreadcrumbComponent } from '../../../components/shared/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.sass'],
-  imports: [CommonModule]
+  standalone: true,
+  imports: [CommonModule, MatCardModule, MatIconModule, MatTabsModule, MatListModule, MatFormFieldModule, MatInputModule, MatToolbarModule, MatButtonModule, MatTooltipModule, CurrencyPipe, SlicePipe, ProductCarouselThreeComponent, BreadcrumbComponent]
 })
 export class ProductDetailsComponent implements OnInit {
 
@@ -20,7 +34,7 @@ export class ProductDetailsComponent implements OnInit {
 
   @ViewChild('zoomViewer', { static: true }) zoomViewer: any;
 
-  public product: Product = {};
+  public product: Product = new Product(0, '', 0);
   public products: Product[] = [];
 
   public image: any;
@@ -31,7 +45,7 @@ export class ProductDetailsComponent implements OnInit {
   index: number = 0;
   bigProductImageIndex = 0;
 
-  constructor(private route: ActivatedRoute, public productsService: ProductService, public dialog: MatDialog, private router: Router, private cartService: CartService) {
+  constructor(private route: ActivatedRoute, public productsService: ProductService, public dialog: MatDialog, private router: Router, private cartService: CartService, private zone: NgZone) {
     this.route.params.subscribe(params => {
       const id = +params['id'];
       this.productsService.getProduct(id).subscribe(product => this.product = product)

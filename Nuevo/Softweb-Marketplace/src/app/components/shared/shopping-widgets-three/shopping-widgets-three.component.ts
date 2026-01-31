@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { MatDividerModule } from '@angular/material/divider';
 import { Product } from '../../../modals/product.model';
 import { CartService } from '../services/cart.service';
 import { Observable, of } from 'rxjs';
@@ -10,7 +12,7 @@ import { ProductService } from '../services/product.service';
   selector: 'app-shopping-widgets-three',
   templateUrl: './shopping-widgets-three.component.html',
   styleUrls: ['./shopping-widgets-three.component.sass'],
-  imports: [AsyncPipe, CurrencyPipe]
+  imports: [AsyncPipe, CurrencyPipe, RouterLink, MatDividerModule]
 })
 export class ShoppingWidgetsThreeComponent implements OnInit {
 

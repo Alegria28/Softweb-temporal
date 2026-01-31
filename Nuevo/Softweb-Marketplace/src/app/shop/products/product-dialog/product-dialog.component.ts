@@ -5,12 +5,16 @@ import { Product } from '../../../modals/product.model';
 import { CartService } from '../../../components/shared/services/cart.service';
 import { Router } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-product-dialog',
   templateUrl: './product-dialog.component.html',
   styleUrls: ['./product-dialog.component.sass'],
-  imports: [CurrencyPipe]
+  imports: [
+    CurrencyPipe,
+    MatIconModule
+  ]
 })
 export class ProductDialogComponent implements OnInit {
 

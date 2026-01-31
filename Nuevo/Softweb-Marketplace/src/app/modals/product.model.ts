@@ -4,12 +4,10 @@ export type ProductTags = 'nike' | 'puma' | 'lifestyle' | 'caprese';
 // Product Colors
 export type ProductColor = 'white' | 'black' | 'red' | 'green' | 'purple' | 'yellow' | 'blue' | 'gray' | 'orange' | 'pink';
 
-
-
 export class Product {
-  id?: number;
-  name?: string;
-  price?: number;
+  id: number;
+  name: string;
+  price: number;
   type?: string;
   salePrice?: number;
   discount?: number;
@@ -26,9 +24,9 @@ export class Product {
   colors?: ProductColor[];
 
   constructor(
-    id?: number,
-    name?: string,
-    price?: number,
+    id: number,
+    name: string,
+    price: number,
     salePrice?: number,
     discount?: number,
     pictures?: string,
@@ -62,8 +60,8 @@ export class Product {
     this.colors = colors;
     this.state = state;
   }
-
 }
+
 // Color Filter
 export interface ColorFilter {
   color?: ProductColor;

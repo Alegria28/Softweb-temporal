@@ -1,39 +1,30 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+import Swiper from 'swiper';
+import { Navigation, Pagination } from 'swiper/modules';
+
+Swiper.use([Navigation, Pagination]);
 
 @Component({
   selector: 'app-main-carousel',
   templateUrl: './main-carousel.component.html',
-  styleUrls: ['./main-carousel.component.sass']
+  styleUrls: ['./main-carousel.component.css'],
+  imports: [CommonModule, MatIconModule, RouterModule]
 })
 export class MainCarouselComponent implements OnInit {
-
-  @Input('slides') slides: Array<any> = [];
-  public config: any = {};
-
-  constructor() { }
-
-  ngOnInit() {
-
-  }
-
-  ngAfterViewInit() {
-    this.config = {
-      slidesPerView: 1,
-      spaceBetween: 0,
-      initialSlide: 5,
-      keyboard: true,
-      navigation: true,
-      pagination: { el: '.swiper-pagination', clickable: true },
-      grabCursor: true,
-      loop: false,
-      preloadImages: false,
-      lazy: true,
-      autoplay: {
-        delay: 6000,
-        disableOnInteraction: false
+  ngOnInit(): void {
+    new Swiper('.swiper-container', {
+      modules: [Navigation, Pagination],
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
       },
-      speed: 500,
-      effect: "slide"
-    }
+      pagination: {
+        el: '.swiper-pagination',
+      }
+    });
   }
+  slides: any[] = [];
 }
