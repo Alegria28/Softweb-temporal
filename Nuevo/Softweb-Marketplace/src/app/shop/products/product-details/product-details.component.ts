@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Product } from '../../../modals/product.model';
 import { ProductService } from '../../../components/shared/services/product.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -9,7 +10,8 @@ import { ProductZoomComponent } from './product-zoom/product-zoom.component';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.sass']
+  styleUrls: ['./product-details.component.sass'],
+  imports: [CommonModule]
 })
 export class ProductDetailsComponent implements OnInit {
 
