@@ -83,7 +83,7 @@ export class ProductService {
   public getProductBySlug(slug: string): Observable<Product> {
     return this.products().pipe(map(items => {
       return items.find((item: Product) => {
-        return item.name.replace(' ', '-') === slug;
+        return !!item.name && item.name.replace(' ', '-') === slug;
       }) || {};
     }));
   }

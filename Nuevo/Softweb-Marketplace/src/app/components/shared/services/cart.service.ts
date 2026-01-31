@@ -39,8 +39,8 @@ export class CartService {
     // If Products exist
     let hasItem = products.find((items: CartItem, index: number): boolean => {
       if (items.product.id == product.id) {
-        let qty = products[index].quantity + parseInt(this.quantity.toString());
-        let stock = this.calculateStockCounts(products[index], this.quantity);
+        let qty = products[index].quantity + parseInt(quantity.toString());
+        let stock = this.calculateStockCounts(products[index], quantity);
         if (qty != 0 && stock) {
           products[index]['quantity'] = qty;
           message = 'The product ' + product.name + ' has been added to cart.';
@@ -68,20 +68,14 @@ export class CartService {
 
   // Calculate Product stock Counts
   public calculateStockCounts(product: CartItem, quantity: number): CartItem | Boolean {
-    let message, status;
     let qty = product.quantity + quantity;
     let stock = product.product.stock;
     if (stock && stock < qty) {
-      // this.toastrService.error('You can not add more items than available. In stock '+ stock +' items.');
       this.snackBar.open('You can not choose more items than available. In stock ' + stock + ' items.', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
       return false
     }
     return true
   }
-
-
-
-
 
   // Removed in cart
   public removeFromCart(item: CartItem) {
@@ -96,7 +90,8 @@ export class CartService {
   public getTotalAmount(): Observable<number> {
     return this.cartItems.pipe(map((product: CartItem[]) => {
       return products.reduce((prev: number, curr: CartItem) => {
-        return prev + curr.product.price * curr.quantity;
+        const price = curr.product.price ?? 0;
+        return prev + price * curr.quantity;
       }, 0);
     }));
   }
@@ -115,6 +110,5 @@ export class CartService {
       return false;
     });
   }
-
 
 }
