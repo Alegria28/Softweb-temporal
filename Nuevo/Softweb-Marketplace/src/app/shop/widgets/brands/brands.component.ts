@@ -18,10 +18,10 @@ export class BrandsComponent implements OnInit {
   }
 
 
-  brendSelect(event) {
-  this.brandChanged.emit(
-    event.value
-  );
+  brendSelect(event: any) {
+    this.brandChanged.emit(
+      event.value
+    );
   }
 
 }

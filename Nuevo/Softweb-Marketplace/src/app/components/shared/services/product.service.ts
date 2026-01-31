@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, Subscriber } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Product } from 'src/app/modals/product.model';
+import { Product } from '../../../modals/product.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { map } from 'rxjs/operators';
 
 
 
 // Get product from Localstorage
-let products = JSON.parse(localStorage.getItem("compareItem")) || [];
+let products = JSON.parse(localStorage.getItem("compareItem") || '[]');
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,8 @@ export class ProductService {
   private _url: string = "assets/data/";
   public url = "assets/data/banners.json";
 
-  public compareProducts: BehaviorSubject<Product[]> = new BehaviorSubject([]);
-  public observer: Subscriber<{}>;
+  public compareProducts: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
+  public observer!: Subscriber<{}>;
 
   constructor(private httpClient: HttpClient, public snackBar: MatSnackBar) {
     this.compareProducts.subscribe(products => products = products)
@@ -50,7 +50,7 @@ export class ProductService {
   // Get Products By Id
   public getProduct(id: number): Observable<Product> {
     return this.products().pipe(map(items => {
-      return items.find((item: Product) => { return item.id === id; });
+      return items.find((item: Product) => { return item.id === id; }) || {};
     }));
     // return this.products.find(product=> product.id === id);
 
@@ -75,16 +75,16 @@ export class ProductService {
 
   // If item is aleready added In compare
   public hasProduct(product: Product): boolean {
-    const item = products.find(item => item.id === product.id);
+    const item = products.find((item: Product) => item.id === product.id);
     return item !== undefined;
   }
 
   // Get Products By Slug
   public getProductBySlug(slug: string): Observable<Product> {
     return this.products().pipe(map(items => {
-      return items.find((item: any) => {
+      return items.find((item: Product) => {
         return item.name.replace(' ', '-') === slug;
-      });
+      }) || {};
     }));
   }
 
@@ -93,7 +93,7 @@ export class ProductService {
     let message, status;
     var item: Product | boolean = false;
     if (this.hasProduct(product)) {
-      item = products.filter(item => item.id === product.id)[0];
+      item = products.filter((item: Product) => item.id === product.id)[0];
       const index = products.indexOf(item);
       this.snackBar.open('The product  ' + product.name + ' already added to comparison list.', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
 

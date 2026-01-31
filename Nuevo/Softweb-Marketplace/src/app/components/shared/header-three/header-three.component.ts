@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/modals/product.model';
-import { CartItem } from 'src/app/modals/cart-item';
+import { Product } from '../../../modals/product.model';
+import { CartItem } from '../../../modals/cart-item';
 import { CartService } from '../services/cart.service';
 
 @Component({
@@ -10,22 +10,22 @@ import { CartService } from '../services/cart.service';
 })
 export class HeaderThreeComponent implements OnInit {
 
-  public sidenavMenuItems:Array<any>;
+  public sidenavMenuItems: Array<any> = [];
 
   public currencies = ['USD', 'EUR'];
-  public currency:any;
+  public currency: any;
   public flags = [
-    { name:'English', image: 'assets/images/flags/gb.svg' },
-    { name:'German', image: 'assets/images/flags/de.svg' },
-    { name:'French', image: 'assets/images/flags/fr.svg' },
-    { name:'Russian', image: 'assets/images/flags/ru.svg' },
-    { name:'Turkish', image: 'assets/images/flags/tr.svg' }
+    { name: 'English', image: 'assets/images/flags/gb.svg' },
+    { name: 'German', image: 'assets/images/flags/de.svg' },
+    { name: 'French', image: 'assets/images/flags/fr.svg' },
+    { name: 'Russian', image: 'assets/images/flags/ru.svg' },
+    { name: 'Turkish', image: 'assets/images/flags/tr.svg' }
   ]
-  public flag:any;
+  public flag: any;
 
-  products: Product[];
+  products: Product[] = [];
 
-  indexProduct: number;
+  indexProduct: number = 0;
   shoppingCartItems: CartItem[] = [];
 
 
@@ -38,11 +38,11 @@ export class HeaderThreeComponent implements OnInit {
     this.flag = this.flags[0];
   }
 
-  public changeCurrency(currency){
-    this.currency = currency;
+  public changeCurrency(currency: string) {
+    this.productService.changeCurrency(currency);
   }
-  public changeLang(flag){
-    this.flag = flag;
+  public changeLang(flag: string) {
+    this.translate.use(flag);
   }
 
 }

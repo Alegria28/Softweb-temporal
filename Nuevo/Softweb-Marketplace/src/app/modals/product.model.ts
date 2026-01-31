@@ -63,8 +63,8 @@ export class Product {
     this.state = state;
   }
 
- }
-  // Color Filter
-  export interface ColorFilter {
-    color?: ProductColor;
-  }
+}
+// Color Filter
+export interface ColorFilter {
+  color?: ProductColor;
+}

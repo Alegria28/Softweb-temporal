@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router } from '@angular/router';
-import { Product } from 'src/app/modals/product.model';
+import { Product } from './../../../modals/product.model';
 import { ProductService } from './product.service';
 
 @Injectable({
@@ -18,7 +18,7 @@ export class Resolver implements Resolve<Product> {
   // Resolver
   async resolve(route: ActivatedRouteSnapshot): Promise<any> {
     await new Promise(resolve => setTimeout(resolve, 1000));
-    this.productService.getProductBySlug(route.params.slug).subscribe(product => {
+    this.productService.getProductBySlug(route.params['slug']).subscribe(product => {
       if (!product) { // When product is empty redirect 404
         this.router.navigateByUrl('/pages/404', { skipLocationChange: true });
       } else {

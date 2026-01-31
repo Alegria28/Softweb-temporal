@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { Product } from 'src/app/modals/product.model';
-import { ProductService } from 'src/app/components/shared/services/product.service';
+import { Product } from '../../../modals/product.model';
+import { ProductService } from '../../../components/shared/services/product.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { CartService } from 'src/app/components/shared/services/cart.service';
+import { CartService } from '../../../components/shared/services/cart.service';
 import { SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { ProductZoomComponent } from './product-zoom/product-zoom.component';
-
 
 @Component({
   selector: 'app-product-details',
@@ -15,21 +14,21 @@ import { ProductZoomComponent } from './product-zoom/product-zoom.component';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  public config: SwiperConfigInterface={};
+  public config: SwiperConfigInterface = {};
   @Output() onOpenProductDialog: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('zoomViewer', { static: true }) zoomViewer;
+  @ViewChild('zoomViewer', { static: true }) zoomViewer: any;
   @ViewChild(SwiperDirective, { static: true }) directiveRef: SwiperDirective;
 
-  public product            :   Product = {};
-  public products           :   Product[] = [];
+  public product: Product = {};
+  public products: Product[] = [];
 
   public image: any;
   public zoomImage: any;
 
-  public counter            :   number = 1;
+  public counter: number = 1;
 
-  index: number;
+  index: number = 0;
   bigProductImageIndex = 0;
 
   constructor(private route: ActivatedRoute, public productsService: ProductService, public dialog: MatDialog, private router: Router, private cartService: CartService) {
@@ -37,7 +36,7 @@ export class ProductDetailsComponent implements OnInit {
       const id = +params['id'];
       this.productsService.getProduct(id).subscribe(product => this.product = product)
     });
-   }
+  }
 
   ngOnInit() {
     this.productsService.getProducts().subscribe(product => this.products = product);
@@ -79,9 +78,9 @@ export class ProductDetailsComponent implements OnInit {
   }
 
 
-  public openProductDialog(product, bigProductImageIndex) {
+  public openProductDialog(product: any, bigProductImageIndex: any) {
     let dialogRef = this.dialog.open(ProductZoomComponent, {
-      data: {product, index: bigProductImageIndex },
+      data: { product, index: bigProductImageIndex },
       panelClass: 'product-dialog',
     });
     dialogRef.afterClosed().subscribe(product => {
@@ -92,7 +91,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
 
-  public selectImage(index) {
+  public selectImage(index: any) {
     console.log(this.product)
     console.log(index)
     this.bigProductImageIndex = index;
@@ -101,70 +100,67 @@ export class ProductDetailsComponent implements OnInit {
 
 
 
-public increment() {
-  this.counter += 1;
-}
-
-public decrement() {
-  if(this.counter >1){
-     this.counter -= 1;
-  }
-}
-
-getRelatedProducts() {
-  this.productsService.getProducts()
-  .subscribe(
-    (product: Product[]) => {
-      this.products = product
-    });
-}
-
-  // Add to cart
-  public addToCart(product: Product, quantity) {
-    if (quantity == 0) return false;
-    this.cartService.addToCart(product, parseInt(quantity));
+  public increment() {
+    this.counter += 1;
   }
 
-   // Add to cart
-   public buyNow(product: Product, quantity) {
-    if (quantity > 0)
-      this.cartService.addToCart(product,parseInt(quantity));
-      this.router.navigate(['/pages/checkout']);
- }
-
-
-
- public onMouseMove(e){
-  if(window.innerWidth >= 1280){
-    var image, offsetX, offsetY, x, y, zoomer;
-    image = e.currentTarget;
-    offsetX = e.offsetX;
-    offsetY = e.offsetY;
-    x = offsetX/image.offsetWidth*100;
-    y = offsetY/image.offsetHeight*100;
-    zoomer = this.zoomViewer.nativeElement.children[0];
-    if(zoomer){
-      zoomer.style.backgroundPosition = x + '% ' + y + '%';
-      zoomer.style.display = "block";
-      zoomer.style.height = image.height + 'px';
-      zoomer.style.width = image.width + 'px';
+  public decrement() {
+    if (this.counter > 1) {
+      this.counter -= 1;
     }
   }
+
+  getRelatedProducts() {
+    this.productsService.getProducts()
+      .subscribe(
+        (product: Product[]) => {
+          this.products = product
+        });
+  }
+
+  // Add to cart
+  public addToCart(product: Product, quantity: any) {
+    if (quantity == 0) return false;
+    this.cartService.addToCart(product, parseInt(quantity));
+    return true;
+  }
+
+  // Add to cart
+  public buyNow(product: Product, quantity: any) {
+    if (quantity > 0)
+      this.cartService.addToCart(product, parseInt(quantity));
+    this.router.navigate(['/pages/checkout']);
+  }
+
+
+
+  public onMouseMove(e: any) {
+    if (window.innerWidth >= 1280) {
+      var image, offsetX, offsetY, x, y, zoomer;
+      image = e.currentTarget;
+      offsetX = e.offsetX;
+      offsetY = e.offsetY;
+      x = offsetX / image.offsetWidth * 100;
+      y = offsetY / image.offsetHeight * 100;
+      zoomer = this.zoomViewer.nativeElement.children[0];
+      if (zoomer) {
+        zoomer.style.backgroundPosition = x + '% ' + y + '%';
+        zoomer.style.display = "block";
+        zoomer.style.height = image.height + 'px';
+        zoomer.style.width = image.width + 'px';
+      }
+    }
+  }
+
+  public onMouseLeave(event: any) {
+    this.zoomViewer.nativeElement.children[0].style.display = "none";
+  }
+
+  public openZoomViewer() {
+    this.dialog.open(ProductZoomComponent, {
+      data: this.zoomImage,
+      panelClass: 'zoom-dialog'
+    });
+  }
+
 }
-
-public onMouseLeave(event){
-  this.zoomViewer.nativeElement.children[0].style.display = "none";
-}
-
-public openZoomViewer(){
-  this.dialog.open(ProductZoomComponent, {
-    data: this.zoomImage,
-    panelClass: 'zoom-dialog'
-  });
-}
-
-
-
-}
-
-

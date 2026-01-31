@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/modals/product.model';
-import { CartItem } from 'src/app/modals/cart-item';
-import { ProductService } from '../../shared/services/product.service';
-import { CartService } from '../../shared/services/cart.service';
+import { Product } from '../../modals/product.model';
+import { CartItem } from '../../modals/cart-item';
+import { ProductService } from '../../components/shared/services/product.service';
+import { CartService } from '../../components/shared/services/cart.service';
 
 @Component({
   selector: 'app-home-three',
@@ -12,17 +12,17 @@ import { CartService } from '../../shared/services/cart.service';
 export class HomeThreeComponent implements OnInit {
 
 
-  products: Product[];
+  products: Product[] = [];
   public banners = [];
 
   shoppingCartItems: CartItem[] = [];
   wishlistItems: Product[] = [];
   contentLoaded = false;
 
-  public featuredProducts: Array<Product>;
-  public onSaleProducts: Array<Product>;
-  public topRatedProducts: Array<Product>;
-  public newArrivalsProducts: Array<Product>;
+  public featuredProducts: Array<Product> = [];
+  public onSaleProducts: Array<Product> = [];
+  public topRatedProducts: Array<Product> = [];
+  public newArrivalsProducts: Array<Product> = []; 
 
   public slides = [
     { title: 'Huge sale', subtitle: 'Up to 70%', image: 'assets/images/carousel/banner1.jpg' },

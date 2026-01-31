@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import { Product } from 'src/app/modals/product.model';
-import { CartService } from 'src/app/components/shared/services/cart.service';
-import { ProductService } from 'src/app/components/shared/services/product.service';
-import { WishlistService } from 'src/app/components/shared/services/wishlist.service';
+import { Product } from '../../../modals/product.model';
+import { CartService } from '../../../components/shared/services/cart.service';
+import { ProductService } from '../../../components/shared/services/product.service';
+import { WishlistService } from '../../../components/shared/services/wishlist.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
@@ -77,14 +77,14 @@ export class ProductCarouselThreeComponent implements OnInit {
   }
 
 
-  public openProductDialog(product) {
+  public openProductDialog(product: Product) {
     let dialogRef = this.dialog.open(ProductDialogComponent, {
       data: product,
       panelClass: 'product-dialog',
     });
     dialogRef.afterClosed().subscribe(product => {
       if (product) {
-        this.router.navigate(['/products', product.id, product.name]);
+        this.router.navigate(['/home/products/', product.id, product.name]);
       }
     });
   }

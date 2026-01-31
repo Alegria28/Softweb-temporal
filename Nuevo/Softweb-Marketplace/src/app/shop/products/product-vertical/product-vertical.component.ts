@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ProductService } from 'src/app/components/shared/services/product.service';
-import { Product } from 'src/app/modals/product.model';
+import { ProductService } from '../../../components/shared/services/product.service';
+import { Product } from '../../../modals/product.model';
 
 @Component({
   selector: 'app-product-vertical',
@@ -9,7 +9,7 @@ import { Product } from 'src/app/modals/product.model';
 })
 export class ProductVerticalComponent implements OnInit {
   contentLoaded = false;
- @Input() products: Product[];
+ @Input() products: Product[] = [];
 
   constructor(private productService: ProductService ) { }
 

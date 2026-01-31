@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from 'src/app/modals/product.model';
+import { Product } from '../../../modals/product.model';
 import { CartService } from '../services/cart.service';
 import { Observable, of } from 'rxjs';
-import { CartItem } from 'src/app/modals/cart-item';
+import { CartItem } from '../../../modals/cart-item';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { ProductService } from '../services/product.service';
 })
 export class ShoppingWidgetsThreeComponent implements OnInit {
 
-  public sidenavMenuItems:Array<any>;
+  public sidenavMenuItems: Array<any> = [];
 
   @Input() shoppingCartItems: CartItem[] = [];
 
@@ -21,7 +21,7 @@ export class ShoppingWidgetsThreeComponent implements OnInit {
 
   ngOnInit() {
   }
-  public updateCurrency(curr) {
+  public updateCurrency(curr: any) {
     this.productService.currency = curr;
   }
 

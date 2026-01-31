@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable, of, Subscriber } from 'rxjs';
 import { map, filter, scan } from 'rxjs/operators';
 
 // Get product from Localstorage
-let products = JSON.parse(localStorage.getItem("wishlistItem")) || [];
+let products = JSON.parse(localStorage.getItem("wishlistItem") || '[]');
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ let products = JSON.parse(localStorage.getItem("wishlistItem")) || [];
 export class WishlistService {
 
   // wishlist array
-  public wishlistProducts: BehaviorSubject<Product[]> = new BehaviorSubject([]);
-  public observer: Subscriber<{}>;
+  public wishlistProducts: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
+  public observer!: Subscriber<{}>;
 
   constructor(public snackBar: MatSnackBar) { }
 
@@ -30,7 +30,7 @@ export class WishlistService {
 
   // If item is aleready added In wishlist
   public hasProduct(product: Product): boolean {
-    const item = products.find(item => item.id === product.id);
+    const item = products.find((item: Product) => item.id === product.id);
     return item !== undefined;
   }
 
@@ -39,7 +39,7 @@ export class WishlistService {
     let message, status;
     var item: Product | boolean = false;
     if (this.hasProduct(product)) {
-      item = products.filter(item => item.id === product.id)[0];
+      item = products.filter((item: Product) => item.id === product.id)[0];
       const index = products.indexOf(item);
     } else {
       products.push(product);

@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ProductService } from 'src/app/components/shared/services/product.service';
+import { ProductService } from '../../../components/shared/services/product.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Product } from 'src/app/modals/product.model';
-import { CartService } from 'src/app/components/shared/services/cart.service';
+import { Product } from '../../../modals/product.model';
+import { CartService } from '../../../components/shared/services/cart.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,11 +12,11 @@ import { Router } from '@angular/router';
 })
 export class ProductDialogComponent implements OnInit {
 
-  public products           :   Product[] = [];
-  public counter            :   number = 1;
-  public variantImage       :   any = '';
-  public selectedColor      :   any = '';
-  public selectedSize       :   any = '';
+  public products: Product[] = [];
+  public counter: number = 1;
+  public variantImage: any = '';
+  public selectedColor: any = '';
+  public selectedSize: any = '';
 
   constructor(private router: Router, public productsService: ProductService, private cartService: CartService, public dialogRef: MatDialogRef<ProductDialogComponent>, @Inject(MAT_DIALOG_DATA) public product: Product) { }
 
@@ -26,9 +26,10 @@ export class ProductDialogComponent implements OnInit {
   }
 
 
-  public addToCart(product: Product, quantity) {
+  public addToCart(product: Product, quantity: any) {
     if (quantity == 0) return false;
     this.cartService.addToCart(product, parseInt(quantity));
+    return true;
   }
 
   public close(): void {
@@ -40,15 +41,15 @@ export class ProductDialogComponent implements OnInit {
   }
 
   public decrement() {
-    if(this.counter >1){
-       this.counter -= 1;
+    if (this.counter > 1) {
+      this.counter -= 1;
     }
   }
 
-     // Add to cart
-     public buyNow() {
-      this.router.navigate(['/home/product', this.product.id]);
-      this.close();
-   }
+  // Add to cart
+  public buyNow() {
+    this.router.navigate(['/home/product', this.product.id]);
+    this.close();
+  }
 
 }

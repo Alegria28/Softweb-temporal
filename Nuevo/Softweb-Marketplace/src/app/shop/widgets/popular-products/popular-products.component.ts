@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/modals/product.model';
-import { ProductService } from 'src/app/components/shared/services/product.service';
+import { Product } from '../../../modals/product.model';
+import { ProductService } from '../../../components/shared/services/product.service';
 
 @Component({
   selector: 'app-popular-products',
@@ -9,12 +9,12 @@ import { ProductService } from 'src/app/components/shared/services/product.servi
 })
 export class PopularProductsComponent implements OnInit {
 
-  public products: Product[];
-  public product            :   Product = {};
- 
-   constructor(private productService: ProductService) { }
- 
-   ngOnInit() {
-     this.productService.getProducts().subscribe(product => this.products = product);
-   }
+  public products: Product[] = [];
+  public product: Product = {};
+
+  constructor(private productService: ProductService) { }
+
+  ngOnInit() {
+    this.productService.getProducts().subscribe(product => this.products = product);
+  }
 }
