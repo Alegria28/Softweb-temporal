@@ -21,8 +21,8 @@
           <mat-icon class="mat-icon-xs mat-icon material-icons ng-star-inserted">star_rate</mat-icon>
           <mat-icon class="mat-icon-xs mat-icon material-icons ng-star-inserted">star_rate</mat-icon>
         </div>
-        @if (!productsService?.catalogMode) {
-        <p class="price">{{product.price | currency:productsService?.currency:'symbol'}}</p>
+        @if (!productsService.catalogMode) {
+        <p class="price">{{product.price | currency:productsService.currency:'symbol'}}</p>
         }
       </div>
     </mat-list-item>

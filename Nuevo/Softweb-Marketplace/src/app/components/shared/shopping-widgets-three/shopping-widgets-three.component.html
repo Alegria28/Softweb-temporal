@@ -54,7 +54,7 @@
           <mat-divider></mat-divider>
           <div class="total" fxLayout="row" fxLayoutAlign="space-between center">
             <p class="text-muted">Subtotal: </p>
-            <span>{{ getTotal() | async | currency:productService?.currency:'symbol' }}</span>
+            <span>{{ getTotal() | async | currency:productService.currency:'symbol' }}</span>
           </div>
         </div>
         }
