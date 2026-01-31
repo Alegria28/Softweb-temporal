@@ -14,7 +14,7 @@ import { ProductDialogComponent } from '../product-dialog/product-dialog.compone
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.sass'],
+  styleUrls: ['./product.component.scss'],
   imports: [CurrencyPipe, RouterLink, MatCardModule, MatIconModule, CommonModule]
 })
 export class ProductComponent implements OnInit {

@@ -2,7 +2,7 @@
   <div class="swiper-wrapper h-100">
     @for (product of product; track $index) {
     <div class="swiper-slide">
-      <mat-card fxLayout="column">
+      <mat-card class="flex flex-col">
         @if (!contentLoaded) {
         <ngx-skeleton-loader count="1"
           [theme]="{ width: '180px', 'border-radius': '0', height: '180px' }"></ngx-skeleton-loader>
@@ -13,7 +13,7 @@
           <a class="product-link" [routerLink]="['/home/product', product.id]">
             <img [src]="product?.pictures?.[0]?.big" alt="">
           </a>
-          <div class="icons" fxLayout="column">
+          <div class="icons flex flex-col">
             <a (click)="addToWishlist(product)" class="hvr-icon-pulse-shrink"><mat-icon
                 class="hvr-icon mat-icon-lg mat-icon material-icons mr-10">favorite_border</mat-icon></a>
             <a (click)="openProductDialog(product)" class="hvr-icon-pulse-shrink"><mat-icon
@@ -41,7 +41,7 @@
             <mat-icon class="mat-icon-xs mat-icon material-icons ng-star-inserted">star_rate</mat-icon>
             <mat-icon class="mat-icon-xs mat-icon material-icons ng-star-inserted">star_rate</mat-icon>
           </div>
-          <div class="price-wrap" fxLayout="row" fxLayoutAlign="space-between center">
+          <div class="price-wrap flex flex-row justify-between items-center">
             <p>${{product.price | number : '1.2-2'}}</p>
             <a (click)="addToCart(product)"><mat-icon mat-stroked-button color="primary"
                 class="mat-icon-lg mat-icon material-icons">shopping_cart</mat-icon></a>

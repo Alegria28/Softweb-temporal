@@ -1,10 +1,10 @@
 <div class="product-item">
-   <mat-card fxLayout="column">
+   <mat-card class="flex flex-col">
       <div class="product-img">
          <a class="product-link" [routerLink]="['/home/product', product.id]">
             <img [src]="product.pictures?.[0]?.big" alt="">
          </a>
-         <div class="icons" fxLayout="column">
+         <div class="icons flex flex-col">
             <a (click)="addToWishlist(product)" class="hvr-icon-pulse-shrink"><mat-icon
                   class="hvr-icon mat-icon-lg mat-icon material-icons mr-10">favorite_border</mat-icon></a>
             <a (click)="openProductDialog(product)" class="hvr-icon-pulse-shrink"><mat-icon
@@ -25,7 +25,7 @@
             <mat-icon class="mat-icon-xs mat-icon material-icons ng-star-inserted">star_rate</mat-icon>
             <mat-icon class="mat-icon-xs mat-icon material-icons ng-star-inserted">star_rate</mat-icon>
          </div>
-         <div class="price-wrap" fxLayout="row" fxLayoutAlign="space-between center">
+         <div class="price-wrap flex flex-row justify-between items-center">
             <p>{{product.price | currency:productsService.currency:'symbol'}}</p>
             <a (click)="addToCart(product)"><mat-icon
                   class="mat-icon-lg mat-icon material-icons">shopping_cart</mat-icon></a>

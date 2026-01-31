@@ -4,8 +4,8 @@
     <button mat-mini-fab color="warn" (click)="close()"><mat-icon>close</mat-icon></button>
   </div>
   <div mat-dialog-content>
-    <div fxLayout="row wrap">
-      <div fxFlex="100" fxFlex.gt-sm="50">
+    <div class="flex flex-row flex-wrap">
+      <div class="flex-1 w-full">
         <div class="swiper-container h-100">
           <div class="swiper-wrapper">
             <img [src]="product.pictures?.[0]?.big" alt="" class="img-fluid">
@@ -13,7 +13,7 @@
 
         </div>
       </div>
-      <div fxFlex="100" fxFlex.gt-sm="50" ngClass.gt-sm="px-2 m-0" ngClass.sm="mt-2" ngClass.xs="mt-2">
+      <div class="flex-1 w-full" ngClass.gt-sm="px-2 m-0" ngClass.sm="mt-2" ngClass.xs="mt-2">
         <div class="product-right">
           <div class="product-details">
             <h2 class="mb-10">{{product.name}}</h2>
@@ -33,11 +33,11 @@
                     Stock</span></span> }
             </p>
           </div>
-          <div class="" fxLayout="row" fxLayoutAlign="space-between center">
+          <div class="flex flex-row justify-between items-center">
             <div class="quantity mt-15">
               <span class="text-muted fw-500">Quantity</span>
-              <div fxLayout="row" fxLayout.xs="column" class="text-muted mt-15">
-                <div fxLayout="row" fxLayoutAlign="center start">
+              <div class="flex flex-row" class="text-muted mt-15">
+                <div class="flex flex-row justify-start items-center">
                   <button mat-icon-button matTooltip="Remove" (click)="decrement()"><mat-icon>remove</mat-icon></button>
                   <input type="text" name="quantity" value="{{counter}}" class="form-control input-number">
                   <button mat-icon-button matTooltip="Add" (click)="increment()"><mat-icon>add</mat-icon></button>

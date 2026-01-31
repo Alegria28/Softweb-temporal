@@ -1,20 +1,19 @@
 <div class="home-header-three">
-  <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px"
-    fxlayoutalign="space-between center">
+  <div class="container flex flex-row gap-5 md:flex-col">
     <div class="logo">
       <a [routerLink]="['/home/one']" routerLinkActive="router-link-active"><img src="assets/images/logo-01.png"></a>
     </div>
-    <div fxflexoffset.gt-sm="10" fxFlex class="search-form">
-      <form class="search-form" fxLayout="row">
+    <div class="flex-1 search-form md:ml-0 lg:ml-[10%]">
+      <form class="search-form flex flex-row">
         <div class="form-wrap">
           <input type="text" placeholder="Type to search...">
           <button class="btn-search" mat-raised-button color="primary" type="submit">Search</button>
         </div>
       </form>
     </div>
-    <div class="call-bucket-wrap" fxLayout="row" fxLayout.sm="row" fxLayoutAlign="center center">
-      <!-- <div class="info-message-icon"  fxLayout="row" fxLayoutAlign="center center">
-          <div class="icon"  fxLayout="row" >
+    <div class="call-bucket-wrap flex flex-row justify-center items-center">
+      <!-- <div class="info-message-icon flex flex-row justify-center items-center">
+          <div class="icon flex flex-row">
               <mat-icon class="mat-icon-lg mat-icon material-icons">call</mat-icon>
           </div>
             <div class="info-text">
@@ -22,9 +21,9 @@
                <span>02(981)336 111</span>
             </div>
         </div> -->
-      <div class="main-menu-wrapper-3" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="main-menu-wrapper-3 flex flex-row justify-between items-center">
         <mat-toolbar class="top-navbar top menu">
-          <app-shopping-widgets-two [shoppingCartItems]="shoppingCartItems"></app-shopping-widgets-two>
+          <app-shopping-widgets-three [shoppingCartItems]="shoppingCartItems"></app-shopping-widgets-three>
         </mat-toolbar>
       </div>
     </div>

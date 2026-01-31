@@ -1,12 +1,10 @@
 <div class="brands-items">
-  <mat-radio-group
-    (change)="brendSelect($event)"
-    aria-labelledby="example-radio-group-label"
+  <mat-radio-group (change)="brendSelect($event)" aria-labelledby="example-radio-group-label"
     class="example-radio-group">
     @for (brand of brands; track $index) {
-      <mat-radio-button fxLayout="row" class="example-radio-button" [value]="brand" multiple>
-        {{brand}}
-      </mat-radio-button>
+    <mat-radio-button class="flex flex-row example-radio-button" [value]="brand" multiple>
+      {{brand}}
+    </mat-radio-button>
     }
   </mat-radio-group>
 </div>

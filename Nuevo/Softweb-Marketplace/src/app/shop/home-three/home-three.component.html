@@ -1,9 +1,8 @@
 <div class="carousel-3">
 
   <div class="container ctn-box">
-    <div class="" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
-      <div class="carousel-2-wrapper" fxLayout.sm="column" fxFlex="100" fxFlex.gt-md="70" fxFlex.md="60"
-        fxFlex.sm="100">
+    <div class="flex flex-row">
+      <div class="carousel-2-wrapper flex-1 w-full" sm:w-full>
         @if (!contentLoaded) {
         <ngx-skeleton-loader [theme]="{ 'border-radius': '0', height: '461px'  }" count="1"></ngx-skeleton-loader>
         }
@@ -11,9 +10,9 @@
         <app-main-carousel [slides]="slides"></app-main-carousel>
         }
       </div>
-      <div class="slider-categories" fxFlex="100" fxFlex.gt-md="30" fxFlex.md="40">
+      <div class="slider-categories flex-1 w-full">
 
-        <div class="carousel-banners-wrapper" fxLayout="column">
+        <div class="carousel-banners-wrapper flex flex-col">
 
           @for (bn of discount; track $index) {
           <div class="carousel-banner mb-15">
@@ -22,10 +21,10 @@
               <ngx-skeleton-loader [theme]="{ 'border-radius': '0', height: '223px'  }" count="1"></ngx-skeleton-loader>
               }
               @if (contentLoaded) {
-              <div fxLayout="row" fxLayout.xs="column" class="info">
+              <div class="flex flex-row info">
 
-                <div fxFlex="100" fxFlex.gt-md="50" class="bn-img"><img [src]="bn.image" alt=""> </div>
-                <div fxFlex="100" fxFlex.gt-md="50" class="text-box w-50" fxLayout="column">
+                <div class="flex-1 w-full bn-img"><img [src]="bn.image" alt=""> </div>
+                <div class="flex-1 w-full text-box w-1/2 flex flex-col">
                   <h4>{{bn.title}}</h4>
                   <p>{{bn.subtitle}}.</p>
                   <button mat-button color="primary">Shop Now</button>
@@ -43,8 +42,8 @@
 </div>
 <div class="home-3-wrap">
   <div class="container ">
-    <div class="home-main-wrapper" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
-      <div fxFlex="100" fxFlex.gt-md="23" fxFlex.md="40" class="home3-sidebar">
+    <div class="home-main-wrapper flex flex-row">
+      <div class="flex-1 w-full home3-sidebar">
         <div class="categories-wrap">
           @if (!contentLoaded) {
           <ngx-skeleton-loader count="1" [theme]="{ 'border-radius': '0', height: '350px' }"></ngx-skeleton-loader>
@@ -141,7 +140,7 @@
           }
           @if (contentLoaded) {
           <div class="form">
-            <div fxLayout="column" class="newsletter-widget">
+            <div class="flex flex-col newsletter-widget">
               <input type="text" placeholder="Enter your email address">
               <button type="submit" mat-raised-button color="primary" class="ped-btn-footer">SUBSCRIBE US</button>
             </div>
@@ -149,11 +148,11 @@
           }
         </div>
       </div>
-      <div fxFlex="100" fxFlex.gt-md="77" fxFlex.md="60" fxFlex.sm="100" class="main-home3-wrapper">
-        <div fxLayout="row wrap" class="info-bar pb-0">
+      <div class="flex-1 w-full sm:w-full main-home3-wrapper">
+        <div class="flex flex-row flex-wrap info-bar pb-0">
 
-          <div class="card-wrap" fxFlex="100" fxFlex.gt-md="25" fxFlex.gt-xs="50">
-            <mat-card class="light-block" fxLayout="row" fxLayoutAlign="start center">
+          <div class="card-wrap flex-1 w-full">
+            <mat-card class="light-block flex flex-row justify-start items-start">
               @if (!contentLoaded) {
               <ngx-skeleton-loader [theme]="{ width: '80px', height: '80px' }" appearance="circle"
                 animation="progress"></ngx-skeleton-loader>
@@ -176,8 +175,8 @@
               </div>
             </mat-card>
           </div>
-          <div class="card-wrap" fxFlex="100" fxFlex.gt-md="25" fxFlex.gt-xs="50">
-            <mat-card class="light-block" fxLayout="row" fxLayoutAlign="start center">
+          <div class="card-wrap flex-1 w-full">
+            <mat-card class="light-block flex flex-row justify-start items-start">
               @if (!contentLoaded) {
               <ngx-skeleton-loader [theme]="{ width: '80px', height: '80px' }" appearance="circle"
                 animation="progress"></ngx-skeleton-loader>
@@ -199,8 +198,8 @@
               </div>
             </mat-card>
           </div>
-          <div class="card-wrap" fxFlex="100" fxFlex.gt-md="25" fxFlex.gt-xs="50">
-            <mat-card class="light-block" fxLayout="row" fxLayoutAlign="start center">
+          <div class="card-wrap flex-1 w-full">
+            <mat-card class="light-block flex flex-row justify-start items-start">
               @if (!contentLoaded) {
               <ngx-skeleton-loader [theme]="{ width: '80px', height: '80px' }" appearance="circle"
                 animation="progress"></ngx-skeleton-loader>
@@ -222,8 +221,8 @@
               </div>
             </mat-card>
           </div>
-          <div class="card-wrap" fxFlex="100" fxFlex.gt-md="25" fxFlex.gt-xs="50">
-            <mat-card class="light-block no-bd" fxLayout="row" fxLayoutAlign="start center">
+          <div class="card-wrap flex-1 w-full">
+            <mat-card class="light-block no-bd flex flex-row justify-start items-start">
               @if (!contentLoaded) {
               <ngx-skeleton-loader [theme]="{ width: '80px', height: '80px' }" appearance="circle"
                 animation="progress"></ngx-skeleton-loader>
@@ -280,7 +279,7 @@
           @if (contentLoaded) {
           <div class="banner">
 
-            <div fxLayout="column" class="text-wrap">
+            <div class="flex flex-col text-wrap">
               <span class="subtitle">CHECK THE PURE QUALITY</span>
               <span class="main">EXCLUSIVE CLASS</span>
               <a href="#">Shop Now</a>
