@@ -1,8 +1,6 @@
 <div class="widgets-three">
   <div class="bucket">
-    <button mat-button fxLayout="row" class="flex-row-button mat-button" fxLayoutAlign="space-between center"
-      [matMenuTriggerFor]="menu">
-
+    <button mat-button fxLayout="row" class="flex-row-button mat-button" fxLayoutAlign="space-between center">
       <div class="mat-button-wrapper">
         <svg color="primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 -36 512.001 512">
           <path
@@ -23,42 +21,44 @@
                     <span>{{ getTotal() | async | currency:productService?.currency:'symbol' }}</span>
                 </div> -->
     </button>
-    <mat-menu class="spCard-main"  #menu="matMenu">
+    <div class="spCard-main">
       <div class="spCard-dropdown">
         <div class="card-list-title" fxLayout="row" fxLayoutAlign="space-between start">
-          <a [routerLink]="['/pages/cart']" routerLinkActive="router-link-active"><p>CHECK CARD</p></a>
+          <a [routerLink]="['/pages/cart']" routerLinkActive="router-link-active">
+            <p>CHECK CARD</p>
+          </a>
           <p>{{shoppingCartItems.length}} ITEM</p>
         </div>
         <mat-divider></mat-divider>
 
         @if (!shoppingCartItems.length) {
-          <p class="woo-message">Please add product</p>
+        <p class="woo-message">Please add product</p>
         }
 
         @if (shoppingCartItems.length) {
-          <div class="new-product" fxLayout="column">
-            @for (item of shoppingCartItems; track $index) {
-              <div class="item" fxLayout="row" fxLayoutAlign="start start">
-                <div class="product">
-                  <img [src]="item.product.pictures" alt="">
-                </div>
-                <div class="desc">
-                  <p>{{item.product.name}}</p>
-                  <span>{{item.quantity}}kg X {{item.product.price}}$</span>
-                </div>
-                <div class="close-circle">
-                  <a (click)="removeItem(item)"><i class="material-icons">delete</i></a>
-                </div>
-              </div>
-            }
-            <mat-divider></mat-divider>
-            <div class="total" fxLayout="row" fxLayoutAlign="space-between center">
-              <p class="text-muted">Subtotal: </p>
-              <span>{{ getTotal() | async | currency:productService?.currency:'symbol' }}</span>
+        <div class="new-product" fxLayout="column">
+          @for (item of shoppingCartItems; track $index) {
+          <div class="item" fxLayout="row" fxLayoutAlign="start start">
+            <div class="product">
+              <img [src]="item.product.pictures" alt="">
+            </div>
+            <div class="desc">
+              <p>{{item.product.name}}</p>
+              <span>{{item.quantity}}kg X {{item.product.price}}$</span>
+            </div>
+            <div class="close-circle">
+              <a (click)="removeItem(item)"><i class="material-icons">delete</i></a>
             </div>
           </div>
+          }
+          <mat-divider></mat-divider>
+          <div class="total" fxLayout="row" fxLayoutAlign="space-between center">
+            <p class="text-muted">Subtotal: </p>
+            <span>{{ getTotal() | async | currency:productService?.currency:'symbol' }}</span>
+          </div>
+        </div>
         }
       </div>
-    </mat-menu>
+    </div>
   </div>
 </div>
