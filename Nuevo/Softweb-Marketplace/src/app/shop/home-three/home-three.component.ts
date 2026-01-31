@@ -63,7 +63,7 @@ export class HomeThreeComponent implements OnInit {
       .subscribe(
         (product: Product[]) => {
           this.products = product;
-          console.log(product);
+          //! console.log(product);
         }
       );
     setTimeout(() => {

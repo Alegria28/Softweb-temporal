@@ -5,8 +5,15 @@ import { CartItem } from '../../../modals/cart-item'
 import { map } from 'rxjs/operators';
 import { Observable, BehaviorSubject, Subscriber } from 'rxjs';
 
+function isBrowser(): boolean {
+  return typeof window !== 'undefined' && typeof window.localStorage !== 'undefined';
+}
+
 // Get product from Localstorage
-let products = JSON.parse(localStorage.getItem("cartItem") || '[]');
+let products: any[] = [];
+if (isBrowser()) {
+  products = JSON.parse(localStorage.getItem("cartItem") || '[]');
+}
 
 @Injectable({
   providedIn: 'root'
@@ -60,8 +67,9 @@ export class CartService {
       status = 'success';
       this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 3000 });
     }
-
-    localStorage.setItem("cartItem", JSON.stringify(products));
+    if (isBrowser()) {
+      localStorage.setItem("cartItem", JSON.stringify(products));
+    }
     return item;
 
   }
@@ -82,7 +90,9 @@ export class CartService {
     if (item === undefined) return false;
     const index = products.indexOf(item);
     products.splice(index, 1);
-    localStorage.setItem("cartItem", JSON.stringify(products));
+    if (isBrowser()) {
+      localStorage.setItem("cartItem", JSON.stringify(products));
+    }
     return true;
   }
 
@@ -104,7 +114,9 @@ export class CartService {
         let stock = this.calculateStockCounts(products[index], quantity);
         if (qty != 0 && stock)
           products[index]['quantity'] = qty;
-        localStorage.setItem("cartItem", JSON.stringify(products));
+        if (isBrowser()) {
+          localStorage.setItem("cartItem", JSON.stringify(products));
+        }
         return true;
       }
       return false;

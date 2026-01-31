@@ -1,10 +1,15 @@
-// Include theming for Angular Material with `mat.theme()`.
-// This Sass mixin will define CSS variables that are used for styling Angular Material
-// components according to the Material 3 design spec.
-// Learn more about theming and how to use it for your application's
-// custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
-@use "tailwindcss";
+@use 'tailwindcss';
+
+$font-color: #555 !default;
+
+@import 'swiper/css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import './assets/scss/theme/_variables.scss';
+@import './assets/scss/theme/_style.scss';
+@import './assets/scss/theme/responsive';
+@import './assets/scss/color1.scss';
+@import './assets/scss/theme/theme';
 
 html {
   height: 100%;
@@ -35,3 +40,19 @@ body {
 }
 
 /* You can add global styles to this file, and also import other style files */
+
+.mat-drawer-content {
+  overflow: unset !important;
+}
+
+.mat-drawer-container[fullscreen] {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: unset !important;
+}
+
+div#mainDIV {
+  overflow: unset !important;
+}

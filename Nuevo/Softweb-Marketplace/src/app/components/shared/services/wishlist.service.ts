@@ -4,8 +4,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, Observable, of, Subscriber } from 'rxjs';
 import { map, filter, scan } from 'rxjs/operators';
 
+function isBrowser(): boolean {
+  return typeof window !== 'undefined' && typeof window.localStorage !== 'undefined';
+}
+
 // Get product from Localstorage
-let products = JSON.parse(localStorage.getItem("wishlistItem") || '[]');
+let products: any[] = [];
+if (isBrowser()) {
+  products = JSON.parse(localStorage.getItem("wishlistItem") || '[]');
+}
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +54,9 @@ export class WishlistService {
     message = 'The product ' + product.name + ' has been added to wishlist.';
     status = 'success';
     this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 3000 });
-    localStorage.setItem("wishlistItem", JSON.stringify(products));
+    if (isBrowser()) {
+      localStorage.setItem("wishlistItem", JSON.stringify(products));
+    }
     return item;
   }
 
@@ -57,6 +66,8 @@ export class WishlistService {
     if (product === undefined) { return; }
     const index = products.indexOf(product);
     products.splice(index, 1);
-    localStorage.setItem("wishlistItem", JSON.stringify(products));
+    if (isBrowser()) {
+      localStorage.setItem("wishlistItem", JSON.stringify(products));
+    }
   }
 }

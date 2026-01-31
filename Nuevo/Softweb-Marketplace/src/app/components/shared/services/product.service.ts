@@ -8,7 +8,22 @@ import { map } from 'rxjs/operators';
 
 
 // Get product from Localstorage
-let products = JSON.parse(localStorage.getItem("compareItem") || '[]');
+let products: any[] = [];
+if (typeof window !== 'undefined' && typeof window.localStorage !== 'undefined') {
+  products = JSON.parse(localStorage.getItem("compareItem") || '[]');
+}
+
+function isLocalStorageAvailable(): boolean {
+  try {
+    return typeof window !== 'undefined' && !!window.localStorage;
+  } catch {
+    return false;
+  }
+}
+
+function isBrowser(): boolean {
+  return typeof window !== 'undefined' && typeof window.localStorage !== 'undefined';
+}
 
 @Injectable({
   providedIn: 'root'
@@ -108,7 +123,9 @@ export class ProductService {
       this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 3000 });
 
     }
-    localStorage.setItem("compareItem", JSON.stringify(products));
+    if (isLocalStorageAvailable()) {
+      localStorage.setItem("compareItem", JSON.stringify(products));
+    }
     return item;
   }
 
@@ -117,7 +134,9 @@ export class ProductService {
     if (product === undefined) { return; }
     const index = products.indexOf(product);
     products.splice(index, 1);
-    localStorage.setItem("compareItem", JSON.stringify(products));
+    if (isLocalStorageAvailable()) {
+      localStorage.setItem("compareItem", JSON.stringify(products));
+    }
   }
 
   // Get Products By category
@@ -133,4 +152,17 @@ export class ProductService {
     ));
   }
 
+  // Ejemplo de uso en métodos donde accedes a localStorage:
+  getItem(key: string): string | null {
+    if (isBrowser()) {
+      return localStorage.getItem(key);
+    }
+    return null;
+  }
+
+  setItem(key: string, value: string): void {
+    if (isBrowser()) {
+      localStorage.setItem(key, value);
+    }
+  }
 }
