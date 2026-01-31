@@ -10,7 +10,7 @@ Swiper.use([Navigation, Pagination]);
 @Component({
   selector: 'app-main-carousel',
   templateUrl: './main-carousel.component.html',
-  styleUrls: ['./main-carousel.component.css'],
+  styleUrls: ['./main-carousel.component.scss'],
   imports: [CommonModule, MatIconModule, RouterModule]
 })
 export class MainCarouselComponent implements OnInit {

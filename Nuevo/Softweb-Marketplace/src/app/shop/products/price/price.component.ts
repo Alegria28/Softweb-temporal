@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-price',
   templateUrl: './price.component.html',
-  styleUrls: ['./price.component.sass'],
+  styleUrls: ['./price.component.scss'],
   imports: [
     MatSliderModule,
     FormsModule,

@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-product-zoom',
   templateUrl: './product-zoom.component.html',
-  styleUrls: ['./product-zoom.component.sass'],
+  styleUrls: ['./product-zoom.component.scss'],
   encapsulation: ViewEncapsulation.None,
   imports: [
     MatIconModule,

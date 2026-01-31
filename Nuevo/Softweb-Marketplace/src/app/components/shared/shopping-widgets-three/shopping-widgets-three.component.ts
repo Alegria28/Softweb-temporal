@@ -11,7 +11,7 @@ import { ProductService } from '../services/product.service';
 @Component({
   selector: 'app-shopping-widgets-three',
   templateUrl: './shopping-widgets-three.component.html',
-  styleUrls: ['./shopping-widgets-three.component.sass'],
+  styleUrls: ['./shopping-widgets-three.component.scss'],
   imports: [AsyncPipe, CurrencyPipe, RouterLink, MatDividerModule]
 })
 export class ShoppingWidgetsThreeComponent implements OnInit {

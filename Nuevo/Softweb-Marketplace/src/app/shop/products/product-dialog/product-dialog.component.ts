@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-product-dialog',
   templateUrl: './product-dialog.component.html',
-  styleUrls: ['./product-dialog.component.sass'],
+  styleUrls: ['./product-dialog.component.scss'],
   imports: [
     CurrencyPipe,
     MatIconModule

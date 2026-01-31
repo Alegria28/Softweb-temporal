@@ -23,7 +23,7 @@ import { BreadcrumbComponent } from '../../../components/shared/breadcrumb/bread
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.sass'],
+  styleUrls: ['./product-details.component.scss'],
   standalone: true,
   imports: [CommonModule, MatCardModule, MatIconModule, MatTabsModule, MatListModule, MatFormFieldModule, MatInputModule, MatToolbarModule, MatButtonModule, MatTooltipModule, CurrencyPipe, SlicePipe, ProductCarouselThreeComponent, BreadcrumbComponent]
 })

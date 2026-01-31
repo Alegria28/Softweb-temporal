@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
   ],
   templateUrl: './categories-furniture.component.html',
-  styleUrls: ['./categories-furniture.component.sass']
+  styleUrls: ['./categories-furniture.component.scss']
 })
 export class CategoriesFurnitureComponent implements OnInit {
 

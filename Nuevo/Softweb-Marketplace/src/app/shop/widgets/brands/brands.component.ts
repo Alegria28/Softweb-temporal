@@ -5,7 +5,7 @@ import { MatRadioModule } from '@angular/material/radio';
 @Component({
   selector: 'app-brands',
   templateUrl: './brands.component.html',
-  styleUrls: ['./brands.component.sass'],
+  styleUrls: ['./brands.component.scss'],
   standalone: true,
   imports: [
     CommonModule,

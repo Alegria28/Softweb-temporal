@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-popular-products',
   templateUrl: './popular-products.component.html',
-  styleUrls: ['./popular-products.component.sass'],
+  styleUrls: ['./popular-products.component.scss'],
   imports: [SlicePipe, CurrencyPipe, CommonModule, MatListModule, MatIconModule, RouterLink]
 })
 export class PopularProductsComponent implements OnInit {
