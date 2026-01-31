@@ -14,7 +14,6 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     FooterComponent
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.scss'
 })
 export class AppComponent {
   title = 'Softweb-Marketplace';
