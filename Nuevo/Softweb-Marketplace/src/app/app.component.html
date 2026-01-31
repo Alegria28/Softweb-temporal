@@ -1,1 +1,9 @@
-<router-outlet />
+<div class="sophia-app app" [ngClass]="settings.theme" id="mainDIV" style="height: 100vh; overflow: auto;">
+    
+    <app-header-three></app-header-three>
+
+    <router-outlet></router-outlet>
+
+    <app-footer></app-footer>
+    
+</div>

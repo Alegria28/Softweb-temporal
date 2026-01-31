@@ -18,7 +18,8 @@ import { CartService } from '../../components/shared/services/cart.service';
 @Component({
   selector: 'app-home-three',
   templateUrl: './home-three.component.html',
-  styleUrls: ['./home-three.component.css'],
+  styleUrls: ['./home-three.component.sass'],
+  standalone: true,
   imports: [
     MatCardModule,
     MatIconModule,

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MenuComponent } from '../menu/menu.component';
 
 interface Product {
   id: number;
@@ -46,14 +47,15 @@ class CartService {
 @Component({
   selector: 'app-header-three',
   templateUrl: './header-three.component.html',
-  styleUrls: [],
+  styleUrls: ['./header-three.component.sass'],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     CommonModule,
     RouterModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MenuComponent
   ],
   providers: [CartService, ProductService, TranslateService]
 })

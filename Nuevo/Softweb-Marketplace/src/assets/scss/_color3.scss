@@ -1,4 +1,4 @@
-@import 'theme/variables';
-@import 'theme/style';
+@use 'theme/variables';
+@use 'theme/style';
 $theme-main: #7ee1ff;
-@import 'theme/responsive';
+@use 'theme/responsive';

@@ -1,15 +1,15 @@
 @use '@angular/material' as mat;
 @use 'tailwindcss';
+@use 'swiper/css';
+@use '@angular/material/prebuilt-themes/indigo-pink.css';
+@use './assets/scss/theme/_variables.scss';
+@use './assets/scss/theme/_style.scss';
+@use './assets/scss/theme/responsive';
+@use './assets/scss/color1.scss';
+@use './assets/scss/theme/theme';
 
 $font-color: #555 !default;
 
-@import 'swiper/css';
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
-@import './assets/scss/theme/_variables.scss';
-@import './assets/scss/theme/_style.scss';
-@import './assets/scss/theme/responsive';
-@import './assets/scss/color1.scss';
-@import './assets/scss/theme/theme';
 
 html {
   height: 100%;

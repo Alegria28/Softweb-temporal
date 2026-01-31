@@ -1,3 +1,6 @@
+@use '@angular/material' as mat;
+@use './_variables.scss' as *;
+
 @media(min-width: 1200px) and (max-width: 1480px) {
   .product-dialog {
     .mat-dialog-content {
