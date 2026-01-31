@@ -3,11 +3,13 @@ import { Product } from '../../modals/product.model';
 import { CartItem } from '../../modals/cart-item';
 import { ProductService } from '../../components/shared/services/product.service';
 import { CartService } from '../../components/shared/services/cart.service';
+import { SlicePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home-three',
   templateUrl: './home-three.component.html',
-  styleUrls: ['./home-three.component.sass']
+  styleUrls: ['./home-three.component.sass'],
+  imports: [SlicePipe]
 })
 export class HomeThreeComponent implements OnInit {
 
@@ -22,7 +24,7 @@ export class HomeThreeComponent implements OnInit {
   public featuredProducts: Array<Product> = [];
   public onSaleProducts: Array<Product> = [];
   public topRatedProducts: Array<Product> = [];
-  public newArrivalsProducts: Array<Product> = []; 
+  public newArrivalsProducts: Array<Product> = [];
 
   public slides = [
     { title: 'Huge sale', subtitle: 'Up to 70%', image: 'assets/images/carousel/banner1.jpg' },

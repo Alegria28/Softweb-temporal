@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { Product } from '../../../modals/product.model';
 import { CartService } from '../services/cart.service';
 import { Observable, of } from 'rxjs';
@@ -8,7 +9,8 @@ import { ProductService } from '../services/product.service';
 @Component({
   selector: 'app-shopping-widgets-three',
   templateUrl: './shopping-widgets-three.component.html',
-  styleUrls: ['./shopping-widgets-three.component.sass']
+  styleUrls: ['./shopping-widgets-three.component.sass'],
+  imports: [AsyncPipe, CurrencyPipe]
 })
 export class ShoppingWidgetsThreeComponent implements OnInit {
 

@@ -4,11 +4,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Product } from '../../../modals/product.model';
 import { CartService } from '../../../components/shared/services/cart.service';
 import { Router } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-dialog',
   templateUrl: './product-dialog.component.html',
-  styleUrls: ['./product-dialog.component.sass']
+  styleUrls: ['./product-dialog.component.sass'],
+  imports: [CurrencyPipe]
 })
 export class ProductDialogComponent implements OnInit {
 

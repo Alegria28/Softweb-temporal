@@ -6,11 +6,13 @@ import { WishlistService } from '../../../components/shared/services/wishlist.se
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-carousel-three',
   templateUrl: './product-carousel-three.component.html',
-  styleUrls: ['./product-carousel-three.component.sass']
+  styleUrls: ['./product-carousel-three.component.sass'],
+  imports: [DecimalPipe]
 })
 export class ProductCarouselThreeComponent implements OnInit {
   contentLoaded = false;

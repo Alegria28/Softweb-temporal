@@ -6,11 +6,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Product } from '../../../modals/product.model';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.sass']
+  styleUrls: ['./product.component.sass'],
+  imports: [
+    CurrencyPipe
+  ]
 })
 export class ProductComponent implements OnInit {
 
